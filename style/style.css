@@ -88,3 +88,23 @@ fieldset {
   text-transform: capitalize;
   color: #365ABA;
 }
+
+.btn_castling {
+  background-color: #365ABA;
+  color: #ffffff;
+}
+
+
+/* !todo  */
+
+.hero {
+  display: none;
+}
+
+.wishlist {
+  display: none;
+}
+
+.edit {
+  /* display: none; */
+}
