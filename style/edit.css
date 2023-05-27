@@ -26,7 +26,7 @@
   gap: 2px;
   align-items: center;
   font-size: 38px;
-  margin-bottom: 11px;
+  margin-bottom: 12px;
   cursor: pointer;
 }
 
@@ -132,10 +132,8 @@
 }
 
 .edit__submit-btn:last-child {
-  margin-right: 22px;
+  margin-right: 0px;
 }
-
-.edit_wish {}
 
 .edit__wish {
   display: grid;
@@ -153,8 +151,6 @@
   gap: 36px;
   align-items: flex-end;
 }
-
-.edit__label-select {}
 
 .edit__select_currency {
   width: 100%;
@@ -186,4 +182,45 @@
   position: absolute;
   top: 8px;
   right: 8px;
+}
+
+@media (max-width: 1200px) {
+  .edit__avatar {
+    margin-bottom: 56px;
+  }
+  
+  .edit__avatar-img {
+    max-width: 466px;
+    margin-right: 34px;
+  }
+
+  .edit__name {
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 30px;
+  }
+
+  .edit__birthdate {
+    margin-bottom: 40px;
+  }
+
+  .edit__desc-input {
+    min-height: 311px;
+  }
+
+  .edit__description {
+    margin-bottom: 40px;
+  }
+
+  .edit__wish {
+    grid-template-columns: 1fr;
+  }
+
+  .edit__label {
+    min-width: 694px;
+  }
+
+  .edit__submit-btn {
+    margin-right: 18px;
+  }
 }
