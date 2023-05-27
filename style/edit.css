@@ -164,6 +164,7 @@
   width: 285px;
   height: 285px;
   margin-bottom: 152px;
+  position: relative;
 }
 
 .edit__label-photo {

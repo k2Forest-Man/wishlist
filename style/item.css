@@ -21,10 +21,17 @@
   font-weight: 400;
   font-size: 28px;
   margin-bottom: 6px;
+  text-align: center;
 }
 
 .item__price {
   flex-grow: 1;
   font-size: 28px;
   margin-bottom: 20px;
+}
+
+@media(max-width: 1200px) {  
+  .item__img {
+    margin-bottom: 40px;
+  }
 }
