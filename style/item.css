@@ -35,3 +35,17 @@
     margin-bottom: 40px;
   }
 }
+
+@media(max-width: 992px) {  
+  .item {
+    padding: 28px 30px 45px;
+  }
+  
+  .item__img {
+    margin-bottom: 36px;
+  }
+  
+  .item__title {
+    margin-bottom: 6px;
+  }
+}
