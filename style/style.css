@@ -96,7 +96,7 @@ fieldset {
 
 @media(max-width: 1700px) {
   .container {
-    padding: 0 l32px;
+    padding: 0 132px;
   }
 
   .btn {
@@ -111,5 +111,11 @@ fieldset {
 
   .btn {
     font-size: 24px;
+  }
+}
+
+@media(max-width: 992px) {
+  .container {
+    padding: 0 43px;
   }
 }

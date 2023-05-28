@@ -8,7 +8,18 @@
   align-items: center;
 }
 
-@media(max-width: 1700px) {
+@media (max-width: 1700px) {
+  .header {
+    padding: 48px 0;
+  }
+
+  .header__logo {
+    width: 54px;
+    height: 54px;
+  }
+}
+
+@media (max-width: 1200px) {
   .header {
     padding: 38px 0;
   }
@@ -19,14 +30,15 @@
   }
 }
 
-@media(max-width: 1200px) {
+@media (max-width: 992px) {
   .header {
-    padding: 48px 0;
+    position: relative;
   }
 
   .header__logo {
-    width: 54px;
-    height: 54px;
+    width: 59px;
+    height: 59px;
   }
 }
+
 

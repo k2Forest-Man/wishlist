@@ -217,7 +217,7 @@
   }
 
   .edit__label {
-    min-width: 694px;
+    max-width: 694px;
   }
 
   .edit__submit-btn {
