@@ -31,6 +31,7 @@
 
 .profile__edit {
   display: flex;
+  text-align: left;
   align-items: center;
   font-size: 32px;
   gap: 7px;
@@ -69,6 +70,10 @@
   .profile__content {
     padding-bottom: 68px;
   }
+
+  .profile__fullname {
+    font-size: 48px;
+  }
   
   .profile__birthday {
     margin-bottom: 24px;
@@ -79,5 +84,40 @@
   }
   .profile__edit-icon {
     width: 30px;
+  }
+}
+
+@media(max-width: 740px) {
+  .profile {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile__avatar {
+    margin-bottom: 16px;
+    margin-right: 0;
+    min-width: 160px;
+  }
+  
+  .profile__content {
+    padding-bottom: 0;
+  }
+
+  .profile__fullname {
+    margin-bottom: 4px;
+    font-size: 36px;
+  }
+  
+  .profile__birthday {
+    margin-bottom: 18px;
+    font-size: 16px;
+  }
+  
+  .profile__edit {
+    gap: 6px;
+    font-size: 14px;
+  }
+  .profile__edit-icon {
+    width: 16px;
   }
 }

@@ -29,3 +29,14 @@
     margin-bottom: 56px;
   }
 }
+
+@media(max-width: 740px) { 
+  .categories__item {
+    margin-bottom: 42px;
+  }
+
+  .categoties__title {
+    margin-bottom: 22px;
+    font-size: 32px;
+  }
+}
