@@ -3,8 +3,8 @@ html {
 }
 
 *,
-*::after,
-*::before {
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -13,8 +13,8 @@ body {
   min-height: 100vh;
   font-family: Roboto, sans-serif;
   font-weight: 400;
-  background-color: #365ABA;
-  color: #ffffff;
+  background: #365ABA;
+  color: #FFFFFF;
 }
 
 img,
@@ -50,39 +50,37 @@ h1,
 h2,
 h3,
 h4,
-h5,
-h6,
 p {
   margin: 0;
 }
 
 fieldset {
-  border: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 .container {
   max-width: 1792px;
-  padding: 0 50px;
+  padding: 0 40px;
   margin: 0 auto;
 }
 
-.page {
+.body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
 .app {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
 }
 
 .btn {
   padding: 10px 20px;
-  background-color: #ffffff;
+  background: #FFFFFF;
   border-radius: 15px;
   font-size: 34px;
   text-transform: capitalize;
@@ -90,13 +88,13 @@ fieldset {
 }
 
 .btn_castling {
-  background-color: #365ABA;
-  color: #ffffff;
+  background: #365ABA;
+  color: #FFFFFF;
 }
 
-@media(max-width: 1700px) {
+@media (max-width: 1700px) {
   .container {
-    padding: 0 132px;
+    padding: 0 32px;
   }
 
   .btn {
@@ -104,7 +102,7 @@ fieldset {
   }
 }
 
-@media(max-width: 1200px) {
+@media (max-width: 1200px) {
   .container {
     padding: 0 22px;
   }
@@ -114,13 +112,13 @@ fieldset {
   }
 }
 
-@media(max-width: 992px) {
+@media (max-width: 992px) {
   .container {
-    padding: 0 43px;
+    padding: 0 34px;
   }
 }
 
-@media(max-width: 740px) {
+@media (max-width: 740px) {
   .container {
     padding: 0 16px;
   }
@@ -132,6 +130,4 @@ fieldset {
   .btn_castling {
     font-size: 24px;
   }
-
-  
 }

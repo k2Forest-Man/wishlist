@@ -33,9 +33,9 @@
     transition: transform 0.5s ease-out;
   }
 
-  /* .nav.nav_active {
+  .nav.nav_active {
     transform: translateY(0);
-  } */
+  }
 
   .nav__btn {
     margin-right: 0;
@@ -54,6 +54,4 @@
     padding: 56px 20px;
     transform: translateY(calc(-100% - 60px));
   }
-
-
 }

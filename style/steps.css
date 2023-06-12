@@ -12,7 +12,7 @@
   font-size: 18px;
 }
 
-.steps__item::before {
+.steps__item:before {
   content: counter(steps-counter);
   counter-increment: steps-counter;
   color: rgba(255, 255, 255, 0.6);
@@ -30,15 +30,16 @@
     font-size: 16px;
   }
   
-  .steps__item::before {
-    margin-right: 8px;
+  .steps__item:before {
+    margin-right: 8;
   }
 }
 
-@media (max-width: 740px) {
+
+@media (max-width: 992px) {
   .steps {
     flex-direction: column;
-    min-width: 220px;
+    max-width: 220px;
   }
   
   .steps__item {
@@ -46,7 +47,7 @@
     text-align: center;
   }
   
-  .steps__item::before {
+  .steps__item:before {
     margin-right: 16px;
     font-size: 40px;
   }

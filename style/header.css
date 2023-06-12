@@ -1,4 +1,4 @@
-.main-header {
+.header {
   padding: 78px 0;
 }
 
@@ -41,7 +41,7 @@
   }
 }
 
-@media(max-width: 740px) {
+@media (max-width: 740px) {
   .header {
     padding: 16px 0;
   }
@@ -50,8 +50,4 @@
     width: 32px;
     height: 32px;
   }
-
-  
 }
-
-
