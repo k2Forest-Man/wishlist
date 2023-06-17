@@ -1,3 +1,4 @@
+import { renderModal } from "./renderModal.js";
 import { API_URL } from "./const.js"
 import { createBurgerMenu } from "./createBurgerMenu.js"
 import { createElement } from "./helper.js";
