@@ -4,7 +4,7 @@ import { createBurgerMenu } from "./createBurgerMenu.js"
 import { createElement } from "./helper.js";
 
 const nav = document.querySelector('.nav');
-createBurgerMenu(nav, 'nav_active');
+createBurgerMenu(nav, 'nav_active', '.nav__btn');
 
 export const renderNavigation = () => {
   nav.textContent = '';
