@@ -1,8 +1,23 @@
 import { createHero } from './createHero.js';
 import { renderNavigation } from './renderNavigation.js'
 
+export const router = Router();
+
 const app = document.querySelector('.app');
 
+const handleEditPageRoute = (id) => {
+
+};
+
+const handleEditProfileRoute = (login) => {
+
+};
+
+const handleUserRoute = (login) => {
+
+};
+
+// Рендерим домашнюю страницу
 const handleHomePage = () => {
   app.textContent = '';
   renderNavigation();
@@ -11,7 +26,20 @@ const handleHomePage = () => {
 };
 
 const init = () => {
-  handleHomePage();
+  let isMainPage = true;
+
+  router.on('/', handleHomePage);
+  router.on('/editwish/newwish', handleEditPageRoute);
+  router.on('/editwish/:id', handleEditPageRoute);
+  router.on('/editprodile/:login', handleEditProfileRoute);
+  router.on('/user/:login', handleUserRoute);
+
+  router.init();
+
+  if (isMainPage) {
+    isMainPage = false;
+    router.setRoute('/')
+  }
 };
 
 init();

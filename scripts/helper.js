@@ -3,3 +3,5 @@ export const createElement = (tagName, attribute) => {
   Object.assign(elem, attribute);
   return elem;
 };
+
+// Функция для создания элемента на странице
