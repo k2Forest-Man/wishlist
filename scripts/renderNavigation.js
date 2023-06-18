@@ -1,7 +1,8 @@
 import { renderModal } from "./renderModal.js";
-import { API_URL } from "./const.js"
-import { createBurgerMenu } from "./createBurgerMenu.js"
+import { API_URL, JWT_TOKEN_KEY } from "./const.js";
+import { createBurgerMenu } from "./createBurgerMenu.js";
 import { createElement } from "./helper.js";
+import { auth, router } from "./index.js";
 
 const nav = document.querySelector('.nav');
 createBurgerMenu(nav, 'nav_active', '.nav__btn');
@@ -30,20 +31,25 @@ export const renderNavigation = () => {
         try {
           const response = await fetch(`${API_URL}/register`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify(credentials)
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(credentials),
           });
 
           if (response.ok) {
             const data = await response.json();
-            console.log(data);
+            localStorage.setItem(JWT_TOKEN_KEY, data.token)
+            auth.login = data.login;
+            router.setRoute(`/user/${data.login}`);
+
+            return true;
           } else {
+            const {message = 'Неизвестная ошибка'} = await response.json();
             console.log(await response.json());
-            throw new Error('Invalid credentials');
+            throw new Error(message);
           }
 
         } catch (error) {
-
+          alert(error.message)
         }
       }
     })
