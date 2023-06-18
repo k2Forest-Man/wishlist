@@ -38,11 +38,11 @@ export const renderModal = ({
   });
 
   const modalField = createElement('fieldset', {
-    className: 'modalField',
+    className: 'modal__field',
   });
 
   const modalLabelLogin = createElement('label', {
-    className: 'modalLabel',
+    className: 'modal__label',
   })
 
   const modalInputLogin = createElement('input', {
@@ -54,7 +54,7 @@ export const renderModal = ({
   });
 
   const modalLabelPassword = createElement('label', {
-    className: 'modalLabel',
+    className: 'modal__label',
   })
 
   const modalInputPassword = createElement('input', {
