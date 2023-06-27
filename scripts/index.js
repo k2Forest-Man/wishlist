@@ -4,7 +4,7 @@ import { getLogin } from "./getLogin.js"
 import { renderNavigation } from "./renderNavigation.js";
 
 export const router = Router();
-const token = localStorage.getItem('JWT_TOKEN_KEY');
+const token = localStorage.getItem(JWT_TOKEN_KEY);
 export const auth = token ? await getLogin(token) : {};
 
 const app = document.querySelector('.app');
