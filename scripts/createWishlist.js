@@ -1,3 +1,4 @@
+import { API_URL } from "./const.js";
 import { createElement, pluralizeYears } from "./helper.js";
 import { auth } from "./index.js";
 import { getUser } from "./serviceAPI.js";
@@ -11,13 +12,18 @@ export const createWishlist = async pageLogin => {
 
   const user = await getUser(pageLogin);
 
-  // {
-  //   "id": "9becd232-0e97-4bc1-b283-23a500d12104",
-  //   "login": "Artem",
-  //   "wish": { },
-  //   "avatar": "avatars/empty.png",
-  //   "birthdate": ""
-  // }
+  /*
+  {
+    "id": "9becd232-0e97-4bc1-b283-23a500d12104",
+    "login": "Artem",
+    "wish": {
+      'гаджеты': [{телефон},{наушники}],
+      'обуви': [{кросы},{тапочки}]
+    },
+    "avatar": "avatars/empty.png",
+    "birthdate": ""
+  }
+  */
 
   const section = createElement('section', {
     className: 'wishlist',
@@ -33,7 +39,7 @@ export const createWishlist = async pageLogin => {
     className: 'wishlist__profile profile',
   });
 
-  const avatar = createElement('div', {
+  const avatar = createElement('img', {
     className: 'profile__avatar',
     src: 'img/avatar.jpg',
     alt: 'Фото профиля',
@@ -54,9 +60,9 @@ export const createWishlist = async pageLogin => {
 
   content.append(title);
 
-  if (user.birthday) {
+  if (user.birthdate) {
 
-    const birthday = new Date(user.birthday);
+    const birthday = new Date(user.birthdate);
     const day = birthday.getDate();
     const month = birthday.toLocaleString('default', { month: 'long' });
     const ageDifMs = Date.now() - birthday.getTime();
@@ -95,5 +101,92 @@ export const createWishlist = async pageLogin => {
   profile.append(avatar, content);
   container.append(profile);
 
+  // Если авторизованный пользователь(user) добавил описание, тогда отобразим его на странице
+  if (user.description) {
+    const description = createElement('p', {
+      className: 'wishlist__description',
+      textContent: user.description,
+    });
 
+    container.append(description);
+  }
+
+
+
+  if (!(Object.keys(user.wish).length)) {
+    const noWish = createElement('p', {
+      className: 'wishlist__no-wish',
+      textContent: 'Список желаний пуст',
+    });
+    container.append(noWish);
+
+  } else {
+    const categoriesList = createElement('ul', {
+      className: 'wishlist__categories categories',
+    });
+    container.append(categoriesList);
+
+    for (const title in user.wish) {
+      if (!Object.hasOwnProperty.call(user.wish, title)) {
+        return
+      }
+
+      const categoriesItem = createElement('li', {
+        className: 'categories__item',
+      });
+
+      const categoriesTitle = createElement('h3', {
+        className: 'categoties__title',
+        textContent: 'title',
+      });
+
+      const wishlist = createElement('ul', {
+        className: 'wishlist__items',
+      });
+
+      categoriesList.append(categoriesTitle, wishlist);
+
+      for (const item of user.wish[title]) {
+        const itemElem = createElement('li', {
+          className: 'item',
+        });
+
+        const itemImg = createElement('img', {
+          src: `${API_URL}/${item.img}`,
+          alt: item.title,
+          className: "item__image",
+        });
+
+        const itemTitle = createElement('h4', {
+          className: 'item__title',
+          textContent: 'item.title',
+        });
+
+        const itemPrice = createElement('p', {
+          className: 'item__price',
+          textContent: `${item.price} ${item.currency}`,
+        });
+
+        itemElem.append(itemImg, itemTitle, itemPrice)
+
+        if (login === pageLogin) {
+          const itemBtn = createElement('button', {
+            className: 'item__btn btn btn_castling',
+            textContent: 'Выбрать',
+          });
+
+          itemElem.append(itemBtn);
+
+          itemBtn.addEventListener('click', () => {
+            router.setRoute(`/editwish/${item.id}`)
+          });
+        }
+
+        wishlist.append(itemElem);
+      }
+
+      categoriesList.append(categoriesItem);
+    }
+  }
+  return section;
 };
