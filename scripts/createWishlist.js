@@ -67,7 +67,7 @@ export const createWishlist = async pageLogin => {
     const month = birthday.toLocaleString('default', { month: 'long' });
     const ageDifMs = Date.now() - birthday.getTime();
     const ageDate = new Date(ageDifMs);
-    const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+    const age = Math.abs(ageDate.getUTCFullYear() - 1970 + 1);
     const plural = pluralizeYears(age);
 
     const ageMessage = `${day} ${month} исполнится ${age} ${plural}`;

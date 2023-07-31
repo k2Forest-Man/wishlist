@@ -14,8 +14,10 @@ const handleEditPageRoute = (id) => {
 
 };
 
-const handleEditProfileRoute = (login) => {
-
+const handleEditProfileRoute = async (login) => {
+  app.textContent = '';
+  renderNavigation('profile');
+  app.append(await createEditProfile(login));
 };
 
 const handleUserRoute = async (login) => {
@@ -37,7 +39,7 @@ const init = () => {
   router.on('/', handleHomePage);
   router.on('/editwish/newwish', handleEditPageRoute);
   router.on('/editwish/:id', handleEditPageRoute);
-  router.on('/editprodile/:login', handleEditProfileRoute);
+  router.on('/editprofile/:login', handleEditProfileRoute);
   router.on('/user/:login', handleUserRoute);
 
   router.init();

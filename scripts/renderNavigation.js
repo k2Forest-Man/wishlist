@@ -7,8 +7,33 @@ import { auth, router } from "./index.js";
 const nav = document.querySelector('.nav');
 createBurgerMenu(nav, 'nav_active', '.nav__btn');
 
-export const renderNavigation = () => {
+export const renderNavigation = (edit) => {
   nav.textContent = '';
+
+  if (edit) {
+    const buttonSave = createElement('button', {
+      className: 'nav__btn btn',
+      textContent: 'Сохранить изменения',
+
+      // !todo
+    });
+
+    buttonSave.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
+
+    const buttonBack = createElement('button', {
+      className: 'nav__btn btn',
+      textContent: 'Назад',
+    });
+
+    buttonBack.addEventListener('click', () => {
+      history.back();
+    });
+
+    nav.append(buttonSave, buttonBack);
+    return
+  }
 
   if (auth.login) {
     const buttonEditProfile = createElement('button', {
@@ -41,7 +66,7 @@ export const renderNavigation = () => {
     });
 
     //Вставляем кнопки на страницу с авторизованным пользователем
-    nav.append(buttonEditProfile, buttonAddWish, buttonLogout );
+    nav.append(buttonEditProfile, buttonAddWish, buttonLogout);
 
     return;
   };
