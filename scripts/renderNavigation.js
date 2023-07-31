@@ -7,19 +7,18 @@ import { auth, router } from "./index.js";
 const nav = document.querySelector('.nav');
 createBurgerMenu(nav, 'nav_active', '.nav__btn');
 
-export const renderNavigation = (edit) => {
+export const renderNavigation = (edit, formProfile) => {
   nav.textContent = '';
 
   if (edit) {
     const buttonSave = createElement('button', {
       className: 'nav__btn btn',
       textContent: 'Сохранить изменения',
-
-      // !todo
     });
 
     buttonSave.addEventListener('click', (e) => {
       e.preventDefault();
+      formProfile.dispatchEvent(new Event('submit', {bubbles: true}))
     });
 
     const buttonBack = createElement('button', {

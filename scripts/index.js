@@ -3,6 +3,7 @@ import { createHero } from "./createHero.js";
 import { getLogin } from "./serviceAPI.js"
 import { renderNavigation } from "./renderNavigation.js";
 import { createWishlist } from "./createWishlist.js"
+import { createEditProfile } from "./createEditProfile.js"
 
 export const router = Router();
 const token = localStorage.getItem(JWT_TOKEN_KEY);
@@ -16,8 +17,10 @@ const handleEditPageRoute = (id) => {
 
 const handleEditProfileRoute = async (login) => {
   app.textContent = '';
-  renderNavigation('profile');
-  app.append(await createEditProfile(login));
+
+  const {sectionEditProfile, formProfile} = await createEditProfile(login);
+  renderNavigation('profile', formProfile);
+  app.append(sectionEditProfile);
 };
 
 const handleUserRoute = async (login) => {
