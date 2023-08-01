@@ -1,7 +1,6 @@
-import { API_URL } from "./const";
-import { createElement } from "./helper";
+import { API_URL } from "./const.js";
+import { createElement,handleImageFileSelection, createSelectDate } from "./helper.js";
 import { getUser } from "./serviceAPI.js";
-import { handleImageFileSelection } from "./helper.js"
 
 export const createEditProfile = async (login) => {
   const user = await getUser(login);
@@ -14,7 +13,7 @@ export const createEditProfile = async (login) => {
     className: 'container',
   });
 
-  section.append(container);
+  sectionEditProfile.append(container);
 
   const formProfile = createElement('form', {
     className: 'edit__form',
@@ -56,7 +55,6 @@ export const createEditProfile = async (login) => {
     type: 'file',
     id: 'avatar-load',
     accept: 'image/jpeg, image/png',
-    value: `${API_URL}/${user.avatar}`,
   });
 
   handleImageFileSelection(editAvatarInput, editAvatarImage);
@@ -121,7 +119,7 @@ export const createEditProfile = async (login) => {
   });
 
   const editBirthdayLabel = createElement('legend', {
-    className: 'edit__label',
+    className: 'edit__label edit__label-text',
     textContent: 'Дата рождения:',
   });
 
@@ -176,6 +174,40 @@ export const createEditProfile = async (login) => {
     editBirthdayLabelMonth,
     editBirthdayLabelYear,
   );
+
+  const editDescription = createElement('fieldset', {
+    className: 'edit__description',
+  });
+
+  const editDescriptionLabel = createElement('label', {
+    className: 'edit__label-text',
+    htmlFor: 'description',
+    textContent: 'Вступительный текст:',
+  });
+
+  const editDescriptionTextarea = createElement('textarea', {
+    className: 'edit__description-input',
+    name: 'description',
+    id: 'description',
+  });
+
+  editDescription.append(editDescriptionLabel, editDescriptionTextarea);
+
+  const editSubmitBtn = createElement('button', {
+    className: 'edit__submit-btn btn',
+    textContent: 'Сохранить изменения',
+    type: 'submit',
+  });
+
+  formProfile.append(
+    editAvatar, 
+    editName, 
+    editBirthday, 
+    editDescription,
+    editSubmitBtn,
+    );
+
+  container.append(formProfile);  
 
   return { sectionEditProfile, formProfile }
 };
