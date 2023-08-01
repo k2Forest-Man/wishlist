@@ -1,6 +1,7 @@
 import { API_URL } from "./const";
 import { createElement } from "./helper";
 import { getUser } from "./serviceAPI.js";
+import { handleImageFileSelection } from "./helper.js"
 
 export const createEditProfile = async (login) => {
   const user = await getUser(login);
@@ -37,6 +38,51 @@ export const createEditProfile = async (login) => {
     className: 'edit__avatar-load',
   });
 
+  const editAvatarLabel = createElement('label', {
+    className: 'edit__label-avatar',
+    htmlFor: 'avatar-load', //Аттрибут for="avatar-load"
+    innerHTML: `
+      <svg class="edit__icon-avatar" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0.75 29.25H6.6875L24.1992 11.7384L18.2617 5.80086L0.75 23.3125V29.25ZM3.91667 24.6267L18.2617 10.2817L19.7183 11.7384L5.37333 26.0834H3.91667V24.6267ZM25.0858 1.20919C24.9394 1.06241 24.7654 0.94596 24.5738 0.866506C24.3823 0.787052 24.177 0.746155 23.9696 0.746155C23.7622 0.746155 23.5569 0.787052 23.3653 0.866506C23.1738 0.94596 22.9998 1.06241 22.8533 1.20919L19.9558 4.10669L25.8933 10.0442L28.7908 7.14669C28.9376 7.00021 29.0541 6.82622 29.1335 6.63468C29.213 6.44314 29.2539 6.23781 29.2539 6.03044C29.2539 5.82307 29.213 5.61774 29.1335 5.4262C29.0541 5.23466 28.9376 5.06067 28.7908 4.91419L25.0858 1.20919Z"
+          fill="white" />
+      </svg>
+      Обновить фотографию
+    `,
+  });
+
+  const editAvatarInput = createElement('input', {
+    className: '',
+    type: 'file',
+    id: 'avatar-load',
+    accept: 'image/jpeg, image/png',
+    value: `${API_URL}/${user.avatar}`,
+  });
+
+  handleImageFileSelection(editAvatarInput, editAvatarImage);
+
+  const btnDeleteAvatar = createElement('button', {
+    className: 'edit__avatar-delete',
+    type: 'button',
+    innerHTML: `
+      <svg class="edit__icon-avatar" width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M9.48842 29.6389C9.48842 31.35 10.9027 32.75 12.6313 32.75H25.2027C26.9313 32.75 28.3456 31.35 28.3456 29.6389V10.9722H9.48842V29.6389ZM12.6313 14.0833H25.2027V29.6389H12.6313V14.0833ZM24.417 6.30556L22.8456 4.75H14.9884L13.417 6.30556H7.91699V9.41667H29.917V6.30556H24.417Z"
+          fill="white" />
+      </svg>
+      <span>Удалить</span>
+    `,
+  });
+
+  btnDeleteAvatar.addEventListener('click', () => {
+    editAvatarInput.value = '';
+    editAvatarImage.src = `img/avatar.png`;
+  });
+
+  editAvatarLoad.append(editAvatarLabel, editAvatarInput, btnDeleteAvatar);
+  editAvatar.append(editAvatarImage, editAvatarLoad);
+
   
-  return {sectionEditProfile, formProfile}
+
+  return { sectionEditProfile, formProfile }
 };
