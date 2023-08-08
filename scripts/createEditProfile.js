@@ -1,6 +1,6 @@
 import { API_URL } from "./const.js";
 import { createElement,handleImageFileSelection, createSelectDate } from "./helper.js";
-import { getUser } from "./serviceAPI.js";
+import { getUser, sendDataUser } from "./serviceAPI.js";
 
 export const createEditProfile = async (login) => {
   const user = await getUser(login);
@@ -20,7 +20,16 @@ export const createEditProfile = async (login) => {
   });
 
   formProfile.addEventListener('submit', (e) => {
-    // !TODO
+    e.preventDefault();
+    //Собираем данные со всех инпутов и записываем их в коллекцию
+    const formData = new FormData(e.target);
+    //Полученные данные записываем в объект
+    const data = Object.fromEntries(formData);
+    //Сервер соберет данные именно в таком формате
+    data.birthdate = `${data.day}/${data.month}/${data.year}`;
+    //data отправляем на сервер, если user.id будет совпадать с JWT_TOKEN_KEY,
+    //тогда сервер будет сохранять данные
+    sendDataUser(user.id, data);
   });
 
   const editAvatar = createElement('fieldset', {
@@ -51,13 +60,18 @@ export const createEditProfile = async (login) => {
   });
 
   const editAvatarInput = createElement('input', {
-    className: '',
+    className: 'edit__input-file edit__input-file_avatar',
     type: 'file',
     id: 'avatar-load',
     accept: 'image/jpeg, image/png',
   });
 
-  handleImageFileSelection(editAvatarInput, editAvatarImage);
+  const editHiddenInput = createElement('input', {
+    type: 'hidden',
+    name: 'avatar'
+  });
+
+  handleImageFileSelection(editAvatarInput, editAvatarImage, editHiddenInput);
 
   const btnDeleteAvatar = createElement('button', {
     className: 'edit__avatar-delete',
@@ -77,7 +91,7 @@ export const createEditProfile = async (login) => {
     editAvatarImage.src = `img/avatar.png`;
   });
 
-  editAvatarLoad.append(editAvatarLabel, editAvatarInput, btnDeleteAvatar);
+  editAvatarLoad.append(editAvatarLabel, editAvatarInput, editHiddenInput, btnDeleteAvatar);
   editAvatar.append(editAvatarImage, editAvatarLoad);
 
   const editName = createElement('fieldset', {

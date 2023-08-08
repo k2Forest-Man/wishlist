@@ -25,8 +25,22 @@ export const pluralizeYears = (age) => {
 };
 
 // При смене картинки, эта функция при выборе файла(аватарки) будет менят на картинку пользователя
-export const handleImageFileSelection = (input, image) => {
-  // !TODO
+export const handleImageFileSelection = (inputFile, image, inputHidden) => {
+  const handleFileInputChange = event => {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      //Файлридер
+      const reader = new FileReader();
+      reader.addEventListener('load', () => {
+        image.src = reader.result;
+        inputHidden.value = reader.result;
+      });
+
+      reader.readAsDataURL(file);
+    }
+  };
+
+  inputFile.addEventListener('change', handleFileInputChange)
 };
 
 // Функция позволяющая создать дату рождения на странице, выбранную пользователем

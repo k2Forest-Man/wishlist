@@ -41,7 +41,7 @@ export const createWishlist = async pageLogin => {
 
   const avatar = createElement('img', {
     className: 'profile__avatar',
-    src: 'img/avatar.jpg',
+    src: `${API_URL}/${user.avatar}`,
     alt: 'Фото профиля',
   });
 
@@ -49,9 +49,7 @@ export const createWishlist = async pageLogin => {
     className: 'profile__content',
   });
 
-  const fullname = user.name || user.surname
-    ? `${user.name || ''}` `${user.surname || ''}`.trim()
-    : user.login;
+  const fullname = user.name || user.surname ? `${user.name || ''} ${user.surname || ''}`.trim() : user.login;
 
   const title = createElement('h2', {
     className: 'profile__fullname',
